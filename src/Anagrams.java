@@ -1,5 +1,6 @@
 import com.sun.deploy.util.StringUtils;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class Anagrams {
         for(int i = 0;i< b.length();i ++){
            countB[(int)(b.charAt(i)-97)]++;
         }
+
 
         for(int i = 0;i < 26;i++){
             if(countA[i] < countB[i]){
