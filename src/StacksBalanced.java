@@ -6,43 +6,50 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class StacksBalanced {
-    public static void main(String args[]){
+    public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         String ans[] = new String[n];
-        for(int i = 0;i < n;i++){
+        for (int i = 0; i < n; i++) {
             Stack stack = new Stack();
             String thiString = scanner.next();
-            if(thiString.length()%2 != 0){
+            if (thiString.length() % 2 != 0) {
                 ans[i] = "NO";
-            }else{
-                for(int j = 0 ;j < thiString.length()/2; j++){
-                    stack.push(thiString.charAt(j));
-                }
-                for(int j = thiString.length()/2; j < thiString.length(); j++){
-                    Character thisPop = (Character) stack.pop();
+            } else {
+                for (int j = 0; j < thiString.length(); j++) {
+                    if (thiString.charAt(j) == '(' || thiString.charAt(j) == '[' || thiString.charAt(j) == '{') {
+                        stack.push(thiString.charAt(j));
+                    } else if (thiString.charAt(j) == ')' || thiString.charAt(j) == ']' || thiString.charAt(j) == '}') {
 
-                    if(thisPop == '('){
-                        if(!(thiString.charAt(j) == ')')){
-                            ans[i] = "NO";
-                        }
-                    }else if(thisPop == '['){
-                        if(!(thiString.charAt(j) == ']')){
-                            ans[i] = "NO";
-                        }
-                    }else if(thisPop == '{' ){
-                        if(!(thiString.charAt(j) == '}')){
+                        if (!stack.isEmpty()) {
+                            Character thisPop = (Character) stack.pop();
+
+                            if (thiString.charAt(j) == ')') {
+                                if (!(thisPop == '(')) {
+                                    ans[i] = "NO";
+                                }
+
+                            } else if (thiString.charAt(j) == '[') {
+                                if (!(thisPop == '[')) {
+                                    ans[i] = "NO";
+                                }
+                            } else if (thiString.charAt(j) == '}') {
+                                if (!(thisPop == '{')) {
+                                    ans[i] = "NO";
+                                }
+                            }
+                        }else {
                             ans[i] = "NO";
                         }
                     }
                 }
-                if(ans[i] == null){
+                if (ans[i] == null) {
                     ans[i] = "YES";
                 }
             }
         }
 
-        for (int i = 0 ; i < ans.length; i++){
+        for (int i = 0; i < ans.length; i++) {
             System.out.print(ans[i] + "\n");
         }
     }
