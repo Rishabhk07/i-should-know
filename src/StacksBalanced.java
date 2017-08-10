@@ -13,9 +13,6 @@ public class StacksBalanced {
         for (int i = 0; i < n; i++) {
             Stack stack = new Stack();
             String thiString = scanner.next();
-            if (thiString.length() % 2 != 0) {
-                ans[i] = "NO";
-            } else {
                 for (int j = 0; j < thiString.length(); j++) {
                     if (thiString.charAt(j) == '(' || thiString.charAt(j) == '[' || thiString.charAt(j) == '{') {
                         stack.push(thiString.charAt(j));
@@ -28,8 +25,7 @@ public class StacksBalanced {
                                 if (!(thisPop == '(')) {
                                     ans[i] = "NO";
                                 }
-
-                            } else if (thiString.charAt(j) == '[') {
+                            } else if (thiString.charAt(j) == ']') {
                                 if (!(thisPop == '[')) {
                                     ans[i] = "NO";
                                 }
@@ -43,14 +39,16 @@ public class StacksBalanced {
                         }
                     }
                 }
-                if (ans[i] == null) {
+                if(!stack.isEmpty()){
+                    ans[i] = "NO";
+                }else if (ans[i] == null) {
                     ans[i] = "YES";
                 }
-            }
+
         }
 
         for (int i = 0; i < ans.length; i++) {
-            System.out.print(ans[i] + "\n");
+            System.out.println(ans[i]);
         }
     }
 }
