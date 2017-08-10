@@ -23,6 +23,7 @@ public class HashTables {
                 wordCount.put(thisString,count);
             }
         }
+
         for (int i = 0 ; i < n ;i++){
             String thisString = sc.next();
             if(wordCount.get(thisString) == null){
